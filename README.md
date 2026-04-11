@@ -18,9 +18,9 @@
 4. Activate virtual envirionment: `python -m venv venv`
 5. Activate Virtual Environment: 
 
-_**Windows**_: venv\Scripts\activate
+_**Windows**_: `venv\Scripts\activate`
 
-_**Mac/Linux**_: source venv/bin/activate
+_**Mac/Linux**_: `source venv/bin/activate`
 
 6. Install dependencies: `pip install -r requirements.txt`
 7. Run backend server: `uvicorn main:app --reload`
