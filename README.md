@@ -26,3 +26,51 @@ _**Mac/Linux**_: `source venv/bin/activate`
 7. Run backend server: `uvicorn main:app --reload`
 8. Open: http://127.0.0.1:8000/docs
 
+## Contribution Guidelines
+### 1. Pick an issue to work on that is assigned to you
+
+### 2. Create a feature branch
+
+`git checkout main`
+
+`git pull origin main`
+
+`git checkout -b feature/<issue-name>`
+
+### 3. Work on feature
+Repeat commits as needed.
+
+`git add .`
+
+`git commit -m "commit message"`
+
+### 4. Push your branch
+`git push origin feature/<issue-name>`
+
+### 5. Create a Pull Request (PR)
+* Open PR from your branch → main
+
+In PR description: **_Closes #ISSUE_NUMBER_**
+
+### 6. Code Review
+
+### 7. Ready to merge: REBASE BEFORE MERGING
+`git checkout main`
+
+`git pull origin main`
+
+`git checkout feature/<issue-name>`
+
+`git rebase main`
+
+### 8. Squash Merge
+Once approved, use "Squash and merge" on GitHub (ensures only 1 commit merged)
+
+### 9. After merge - Clean up
+1. Delete your branch locally:
+
+`git branch -d feature/<issue-name>`
+
+2. Delete remote branch:
+
+`git push origin --delete feature/<issue-name>`
