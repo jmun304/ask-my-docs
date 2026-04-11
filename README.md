@@ -30,6 +30,7 @@ _**Mac/Linux**_: `source venv/bin/activate`
 ### 1. Pick an issue to work on that is assigned to you
 
 ### 2. Create a feature branch
+Make sure you are in root: `cd ask-my-docs`
 
 `git checkout main`
 
