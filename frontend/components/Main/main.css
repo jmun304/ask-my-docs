@@ -1,0 +1,37 @@
+.main-container {
+    width: 800px;
+    border-radius: 0 0 20px 20px;
+}
+
+.doc-nav-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 5px;
+    background-color: var(--teal);
+    padding: 20px;
+    border-radius: 20px 20px 0 0;
+}
+
+.doc-nav-container button {
+    background-color: var(--grey);
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--dark);
+    box-shadow: var(--box-shadow);
+    letter-spacing: 0.03em;
+}
+
+.doc-nav-container button:hover {
+    background-color: var(--blue);
+}
+
+.document-container {
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    min-height: 500px;
+}
