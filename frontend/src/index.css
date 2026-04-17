@@ -1,0 +1,39 @@
+:root {
+  --dark: #022b3a;
+  --teal: #1f7a8c;
+  --blue: #bfdbf7;
+  --grey: #e1e5f2;
+  --white: #fff;
+  --lato: "Lato", sans-serif;
+  --box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  margin: 20px;
+  font-family: var(--lato);
+  color: var(--white);
+}
+
+h2 {
+  font-family: var(--lato);
+  color: var(--dark);
+  margin: 0;
+}
+
+body {
+    font-family: var(--lato);
+    color: var(--dark);
+    margin: 0;
+}
+
+header {
+  background-color: var(--teal);
+  padding: 10px;
+  margin-bottom: 40px;
+}
+
+main {
+  display: flex;
+  gap: 60px;
+  margin: 20px;
+}
