@@ -21,6 +21,8 @@ async def upload_file(file: UploadFile = File(...)):
     text = ""
     for page in pdf_reader.pages:
         text += page.extract_text()
+    # Clean extracted text
+    text = clean_text(text)
     
     return {
         "filename": file.filename,
