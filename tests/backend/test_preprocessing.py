@@ -1,5 +1,5 @@
 # Testing clean_text() and chunk_text() functions
-from main import clean_text, chunk_text
+from backend.preprocessing import clean_text, chunk_text
 
 
 # ------------ clean_text() tests ------------
