@@ -1,0 +1,131 @@
+.chat-container {
+    width: 350px; 
+    font-family: var(--lato);
+    font-size: 16px;
+    color: var(--dark);
+    box-shadow: var(--box-shadow);
+    border-radius: 20px;
+}
+
+.chat-container h2 {
+    margin: 0;
+}
+
+.chat-input-container {
+    padding: 20px;
+    background-color: var(--blue);
+    border-radius: 0 0 20px 20px;
+}
+
+.chat-inputs {
+    border-radius: 5px;
+    border: 1px solid var(--grey);
+    box-shadow: var(--box-shadow); 
+    background-color: var(--white);
+    padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input[type="text"] {
+  height: 40px;
+  border: 0px;
+  font-size: 16px;
+  width: 90%;
+  font-family: var(--lato);
+}
+
+input[type="text"]:focus {
+    outline: none; 
+}
+
+input::placeholder {
+    color: var(--dark);
+}
+
+button[type="submit"] {
+    display: inline;
+    margin: 10px 0;
+    background-color: var(--white);
+    border: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--dark);
+    padding: 10px;
+}
+
+button[type="submit"] i {
+    color: var(--blue);
+    margin: 0;
+    font-size: 20px;
+    rotate: 45deg;
+}
+
+button[type="submit"] i:hover {
+    color: var(--grey);
+}
+
+.messages-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+/* Citation for the following class:
+Date: 04/15/2026
+Adapted from:
+Source URL: https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up */
+.scrollbar-container {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+    height: 300px;
+}
+
+.chat-top {
+    background-color: var(--blue);
+    padding: 20px;
+    border-radius: 20px 20px 0 0;
+}
+
+.chat-bubbles {
+    width: fit-content;
+    padding: 10px 15px;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+}
+
+.user-question {
+  background-color: var(--grey);
+  text-align: left;
+  align-self: flex-start;
+}
+
+.ai-answer {
+  background-color: var(--teal);
+  text-align: right;
+  align-self: flex-end;
+  color: var(--white);
+}
+
+/* Citation for the following code:
+Date: 04/15/2026
+Adapted from:
+Source URL: https://stackoverflow.com/a/67605934 */
+.loading {
+    font-weight: bold;
+    display: inline-block;
+    font-family: monospace;
+    clip-path: inset(0 3ch 0 0);
+    animation: l 1s steps(4, jump-none) infinite;
+}
+
+@keyframes l {
+  to {
+    clip-path: inset(0)
+  }
+}
