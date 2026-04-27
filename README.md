@@ -23,7 +23,7 @@ _**Windows**_: `venv\Scripts\activate`
 _**Mac/Linux**_: `source venv/bin/activate`
 
 6. Install dependencies: `pip install -r requirements.txt`
-7. Run backend server: `uvicorn main:app --reload`
+7. Run backend server: `uvicorn app.main:app --reload`
 8. Open: http://127.0.0.1:8000/docs
 
 ## Contribution Guidelines
@@ -36,22 +36,23 @@ Make sure you are in root: `cd ask-my-docs`
 
 `git pull origin main`
 
-`git checkout -b feature/<issue-name>`
+`git checkout -b [feature/<issue-name>]`
 
 ### 3. Work on feature
 Repeat commits as needed.
 
+Make sure you are in root: `cd ask-my-docs`
 `git add .`
 
 `git commit -m "commit message"`
 
 ### 4. Push your branch
-`git push origin feature/<issue-name>`
+`git push origin [feature/<issue-name>]`
 
 ### 5. Create a Pull Request (PR)
 * Open PR from your branch → main
 
-In PR description: **_Closes #ISSUE_NUMBER_**
+In PR description: **#ISSUE_NUMBER: (pick your issue)** and provide description for your PR.
 
 ### 6. Code Review
 
@@ -60,7 +61,7 @@ In PR description: **_Closes #ISSUE_NUMBER_**
 
 `git pull origin main`
 
-`git checkout feature/<issue-name>`
+`git checkout [feature/<issue-name>]`
 
 `git rebase main`
 
@@ -70,8 +71,8 @@ Once approved, use "Squash and merge" on GitHub (ensures only 1 commit merged)
 ### 9. After merge - Clean up
 1. Delete your branch locally:
 
-`git branch -d feature/<issue-name>`
+`git branch -d [feature/<issue-name>]`
 
 2. Delete remote branch:
 
-`git push origin --delete feature/<issue-name>`
+`git push origin --delete [feature/<issue-name>]`
