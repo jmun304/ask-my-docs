@@ -1,5 +1,4 @@
 import io
-
 import PyPDF2
 from app.services.preprocessing import clean_text
 
@@ -20,6 +19,7 @@ async def extract_pdf_text(file):
 
     return {
         "filename": file.filename,
+        "full_text": text, #return full text
         "preview": text[:1000],
         "total_pages": len(pdf_reader.pages)
     }
