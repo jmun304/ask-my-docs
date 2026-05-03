@@ -25,17 +25,21 @@ export default function DocumentView({activeDoc}) {
 
     // Move PDF backwards one page if not on the first page
     function changeBack() {
+        // If first page, stay on current page
         if (pageNumber === 1) {
             setPageNumber(pageNumber)
+        // If not first page, go back one page
         } else {
             setPageNumber(pageNumber - 1)
         }
     }
 
-    // Move PDF forwards one page if not on the last page
+    // Move PDF forward one page if not on the last page
     function changeForward() {
+        // If last page, stay on current page
         if (pageNumber === numPages) {
             setPageNumber(pageNumber)
+        // If not last page, go forward one page
         } else {
             setPageNumber(pageNumber + 1)
         }
@@ -44,8 +48,8 @@ export default function DocumentView({activeDoc}) {
     return (
         <>
             <div className="doc-nav-container">
-                <button aria-label="Previous Page" onClick={changeBack}><i className="fa-solid fa-angle-left"></i></button>
-                <button aria-label="Next Page" onClick={changeForward}><i className="fa-solid fa-angle-right"></i></button>
+                <button aria-label="Previous Page" onClick={changeBack}><i aria-hidden="true" className="fa-solid fa-angle-left"></i></button>
+                <button aria-label="Next Page" onClick={changeForward}><i aria-hidden="true" className="fa-solid fa-angle-right"></i></button>
             </div>
             <div className="document-container">
                 <Document file={activeDoc} onLoadSuccess={onDocumentLoadSuccess}>

@@ -19,7 +19,7 @@ export default function Upload({handleUpload}) {
                 Adapted from:
                 Source URL: https://stackoverflow.com/questions/572768/styling-an-input-type-file-button */}
                 <label htmlFor="file-upload" className="custom-file-upload">
-                    <i className="fa-solid fa-arrow-up-from-bracket"></i>
+                    <i aria-hidden="true" className="fa-solid fa-arrow-up-from-bracket"></i>
                     Upload
                 </label>
                     <input accept="application/pdf, .pdf" id="file-upload" type="file" onChange={uploadFile}/>

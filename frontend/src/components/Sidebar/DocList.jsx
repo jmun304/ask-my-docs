@@ -1,6 +1,6 @@
 import DocButton from "./DocButton.jsx"
 
-export default function DocList({documents, handleActiveDoc}) {
+export default function DocList({documents, activeDoc, handleActiveDoc}) {
   return (
     <>
       <div className="buttons-container">
@@ -9,6 +9,7 @@ export default function DocList({documents, handleActiveDoc}) {
           <DocButton
             key = {index}
             document = {document}
+            activeDoc = {activeDoc}
             handleActiveDoc = {handleActiveDoc}
           />
         )}
