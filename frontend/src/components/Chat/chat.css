@@ -1,8 +1,18 @@
 .chat-container {
-    width: 350px; 
+    width: 325px;
     font-family: var(--lato);
     font-size: 16px;
     color: var(--dark);
+}
+
+@media (max-width: 1250px) {
+    .chat-container {
+        width: 100%;
+        order: 2;
+    }
+}
+
+.chat-box {
     box-shadow: var(--box-shadow);
     border-radius: 20px;
 }
@@ -102,13 +112,13 @@ Source URL: https://stackoverflow.com/questions/18614301/keep-overflow-div-scrol
 .user-question {
   background-color: var(--grey);
   text-align: left;
-  align-self: flex-start;
+  align-self: flex-end;
 }
 
 .ai-answer {
   background-color: var(--teal);
   text-align: right;
-  align-self: flex-end;
+  align-self: flex-start;
   color: var(--white);
 }
 

@@ -2,7 +2,6 @@ import Sidebar from "./components/Sidebar/Sidebar.jsx"
 import Main from "./components/Main/Main.jsx"
 import Chat from "./components/Chat/Chat.jsx"
 import { useState } from 'react';
-import './App.css'
 
 function App() {
   const [documents, setDocuments] = useState([])
@@ -15,10 +14,8 @@ function App() {
 
   function handleUpload (uploadedDoc) {
     setDocuments([...documents, uploadedDoc]);
-    // If its the first document uploaded, set as active doc
-    if (documents.length == 0) {
-      handleActiveDoc(uploadedDoc.fileURL)
-    }
+    // Set new document as active doc
+    handleActiveDoc(uploadedDoc.fileURL);
   };
 
   function handleMessages (newMessage) {
@@ -39,15 +36,16 @@ function App() {
         <h1>Ask My Documents</h1>
       </header>
       <main>
-          <div><Sidebar 
+          <div className="sidebar-container"><Sidebar 
                 documents={documents}
+                activeDoc={activeDoc}
                 handleActiveDoc={handleActiveDoc}
                 handleUpload={handleUpload}
           /></div>
-          <div><Main 
+          <div className="main-container"><Main 
                 activeDoc={activeDoc}
           /></div>
-          <div><Chat 
+          <div className="chat-container"><Chat 
                 messages={messages}
                 handleMessages={handleMessages}
           /></div>

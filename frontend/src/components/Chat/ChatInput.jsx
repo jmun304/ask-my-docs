@@ -24,8 +24,8 @@ export default function ChatInput({handleMessages}) {
             <form onSubmit={handleSubmit}>
                 <label>
                     <div className="chat-inputs">
-                        <input type="text" placeholder="Type your question here" value={value} onInput={handleChange}/>
-                        <button aria-label="Submit" type="submit"><i className="fa-solid fa-paper-plane"></i></button>
+                        <input type="text" placeholder="Type your question here" aria-label="Type your question here" value={value} onInput={handleChange}/>
+                        <button aria-label="Submit" type="submit"><i aria-hidden="true" className="fa-solid fa-paper-plane"></i></button>
                     </div>
                 </label>
             </form>

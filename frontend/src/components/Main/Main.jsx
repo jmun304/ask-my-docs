@@ -4,7 +4,7 @@ import './Main.css'
 export default function Main({activeDoc}) {
   return (
     <>
-      <div className="main-container">
+      <div>
         <DocumentView 
           activeDoc = {activeDoc}
         />

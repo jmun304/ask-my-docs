@@ -1,12 +1,19 @@
 .sidebar-container {
-    width: 275px; 
+    width: 250px;
+}
+
+@media (max-width: 1250px) {
+    .sidebar-container {
+        width: 100%;
+        order: 1;
+    }
 }
 
 .buttons-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 40px 0;
+    margin: 20px 0;
 }
 
 .buttons-container button {
@@ -26,6 +33,15 @@
 
 .buttons-container button:hover {
     background-color: var(--blue);
+}
+
+button.active-btn {
+    background-color: var(--teal); 
+    color: var(--white);
+}
+
+button.active-btn:hover {
+    background-color: var(--dark); 
 }
 
 /* Citation for the following classes:

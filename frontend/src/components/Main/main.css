@@ -1,6 +1,13 @@
 .main-container {
-    width: 800px;
+    width: 700px;
     border-radius: 0 0 20px 20px;
+}
+
+@media (max-width: 1250px) {
+    .main-container {
+        width: 100%;
+        order: 3;
+    }
 }
 
 .doc-nav-container {
@@ -30,8 +37,26 @@
     background-color: var(--blue);
 }
 
+/* Citation for the following classes:
+Date: 05/3/2026
+Adapted from:
+Source URL: https://github.com/diegomura/react-pdf/discussions/1728#discussioncomment-14764852 */
 .document-container {
     box-shadow: var(--box-shadow);
     padding: 20px;
     min-height: 500px;
+    overflow: hidden;
+}
+
+.react-pdf__Document {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.react-pdf__Page__canvas {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
 }

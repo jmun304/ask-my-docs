@@ -5,7 +5,7 @@ import './chat.css'
 export default function Chat({messages, handleMessages}) {
 return (
         <>
-          <div className="chat-container">
+          <div className="chat-box">
             <div className="chat-top"><h2><i className="fa-regular fa-message"></i> Doc Chat</h2></div>
             <Messages 
               messages={messages}
