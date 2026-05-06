@@ -18,7 +18,7 @@ async def extract_pdf_text(file):
     text = clean_text(text)
 
     return {
-        "filename": file.filename,
+        "file_name": file.filename,
         "full_text": text, #return full text
         "preview": text[:1000],
         "total_pages": len(pdf_reader.pages)

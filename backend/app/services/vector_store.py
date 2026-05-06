@@ -23,13 +23,17 @@ collection = client.get_or_create_collection(
     embedding_function=CustomEmbeddingFunction()
 )
 
-def store_chunks(chunks: list[str], doc_id: str):
+def store_chunks(chunks: list[str], doc_id: str, file_name: str = None):
     """ Builds unique ID for every chunk in a pdf and then stores them in vectors.
         Isolate queries by doc_id so query returns correct chunks.
+        Stores filename in metadata to prevent duplicate uploads.
     """
     ids = [f"{doc_id}_{i}" for i in range(len(chunks))]
-    metadatas = [{"doc_id": doc_id} for _ in chunks]
-    collection.add(documents=chunks, ids=ids, metadatas=metadatas)
+    metadatas = [{"doc_id": doc_id, "file_name": file_name} for _ in chunks]
+    try:
+        collection.add(documents=chunks, ids=ids, metadatas=metadatas)
+    except Exception as e:
+        print(f"Warning: {e}")
 
 def query_chunks(query: str, doc_id: str = None, n_results: int = 5) -> list[str]:
     """ Convert query into vector and return 5 relevant chunks
