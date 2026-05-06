@@ -14,6 +14,7 @@ def clean_text(text: str) -> str:
     return text
 
 
+
 def chunk_text(text: str, chunk_size: int = 300) -> tuple[int, list[str]]:
     """Splits given text into chunks of given chunk_size (default is 300 words); Returns number of chunks and a list of
     the chunks as strings"""
