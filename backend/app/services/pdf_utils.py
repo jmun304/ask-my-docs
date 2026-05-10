@@ -1,25 +1,28 @@
-import io
-import pypdf
-from app.services.preprocessing import clean_text
+from pypdf import PdfReader
 
 
-async def extract_pdf_text(file):
-    # Read file bytes from upload
-    contents = await file.read()
+def extract_pdf_text(file) -> str:
+    """
+    Extract raw text from uploaded PDF using pypdf.
 
-    # Parse PDF using pypdf
-    pdf_reader = pypdf.PdfReader(io.BytesIO(contents))
+    IMPORTANT NOTES:
+    - This returns RAW text (still messy by nature of PDFs)
+    - DO NOT try to over-clean here
+    - Keep structure (pages) so downstream chunking works better
+    """
 
-    # Extract text from all pages
-    text = ""
-    for page in pdf_reader.pages:
-        text += page.extract_text() + " "
-    # Clean extracted text
-    text = clean_text(text)
+    reader = PdfReader(file.file)
 
-    return {
-        "filename": file.filename,
-        "full_text": text, #return full text
-        "preview": text[:1000],
-        "total_pages": len(pdf_reader.pages)
-    }
+    pages_text = []
+
+    for page in reader.pages:
+        # extract_text() may return None for image-based or weird PDFs
+        page_text = page.extract_text() or ""
+
+        # Keep page separation to preserve structure
+        pages_text.append(page_text)
+
+    # Join pages with clear separation: this prevents word-splitting across page boundaries
+    text = "\n\n".join(pages_text)
+
+    return text

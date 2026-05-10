@@ -42,6 +42,7 @@ Make sure you are in root: `cd ask-my-docs`
 Repeat commits as needed.
 
 Make sure you are in root: `cd ask-my-docs`
+
 `git add .`
 
 `git commit -m "commit message"`
