@@ -48,7 +48,7 @@ def chunk_text(text: str) -> list[str]:
     """
     Splits text into semantically meaningful chunks for embedding + retrieval.
 
-    WHY THIS VERSION IS BETTER:
+    This version:
     - Uses hierarchical separators (paragraph → sentence → word)
     - Preserves meaning boundaries instead of blindly cutting words
     - Uses overlap to improve retrieval continuity
