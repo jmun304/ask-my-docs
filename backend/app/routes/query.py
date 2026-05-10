@@ -21,14 +21,14 @@ IMPORTANT ARCHITECTURAL RULE (DO NOT BREAK)
 ========================================================
 DO NOT bypass rag_pipeline() in this file.
 
-❌ BEFORE: chunks = retrieve_chunks(request.question)
+BEFORE: chunks = retrieve_chunks(request.question)
     Code above:
     - Bypasses the RAG orchestration layer
     - Mixes API layer with retrieval logic
     - Prevents clean LLM integration later
     - Duplicates logic already handled in rag.py
 
-✔ CORRECT APPROACH:
+CORRECT APPROACH:
     Always call:
         rag_pipeline(request.question)
 
