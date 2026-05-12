@@ -20,3 +20,5 @@ Thumbs.db
 
 # ChromaDB
 data/chroma/
+backend/data/chroma/
+tests/backend/data/chroma/
