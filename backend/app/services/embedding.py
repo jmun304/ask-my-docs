@@ -14,4 +14,3 @@ def embed_chunks(input_chunks: list[str]) -> list[list[float]]:
     Returns them as a python list of lists"""
     embeddings = model.encode(input_chunks)
     return embeddings.tolist()
-

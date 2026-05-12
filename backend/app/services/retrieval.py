@@ -1,4 +1,9 @@
 from app.services.vector_store import query_chunks
+from app.core.config import TOP_K_RESULTS
 
-def retrieve_chunks(question: str, doc_id: str = None, n_results: int = 5) -> list[str]:
-    return query_chunks(question, doc_id, n_results)
+
+def retrieve_chunks(question: str) -> list[str]:
+    return query_chunks(
+        query=question,
+        n_results=TOP_K_RESULTS
+    )

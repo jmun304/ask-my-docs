@@ -1,43 +1,59 @@
 import chromadb
-from chromadb import EmbeddingFunction
-from app.services.embedding import embed_chunks
+from app.core.config import CHROMA_DB_DIR, COLLECTION_NAME
 
-class CustomEmbeddingFunction(EmbeddingFunction):
-    """Custom embedding function that integrates the team's SentenceTransformer model
-    with ChromaDB.
-    When ChromaDB needs to convert text to vectors (during both storing and querying),
-    it calls this class like a function, which triggers __call__ and runs embed_chunks()
-    from embedding.py using the all-MiniLM-L6-v2 model.
+from app.services.embedding import embed_text, embed_chunks
+
+client = chromadb.PersistentClient(path=CHROMA_DB_DIR)
+
+collection = client.get_or_create_collection(name=COLLECTION_NAME)
+
+
+def reset_collection():
     """
-    def __call__(self, input: list[str]) -> list[list[float]]:
-        """Args:
-            input: list of strings to embed (chunks or query)
-        Returns:
-            list of embedding vectors, one per input string
-        """
-        return embed_chunks(input)
-
-client = chromadb.PersistentClient(path="./data/chroma")
-collection = client.get_or_create_collection(
-    name="docs",
-    embedding_function=CustomEmbeddingFunction()
-)
-
-def store_chunks(chunks: list[str], doc_id: str):
-    """ Builds unique ID for every chunk in a pdf and then stores them in vectors.
-        Isolate queries by doc_id so query returns correct chunks.
+    Deletes old collection and recreates it.
+    Used when uploading a new PDF.
     """
-    ids = [f"{doc_id}_{i}" for i in range(len(chunks))]
-    metadatas = [{"doc_id": doc_id} for _ in chunks]
-    collection.add(documents=chunks, ids=ids, metadatas=metadatas)
 
-def query_chunks(query: str, doc_id: str = None, n_results: int = 5) -> list[str]:
-    """ Convert query into vector and return 5 relevant chunks
+    global collection
+
+    try:
+        client.delete_collection(COLLECTION_NAME)
+    except Exception:
+        pass
+
+    collection = client.get_or_create_collection(name=COLLECTION_NAME)
+
+
+def store_chunks(chunks: list[str]):
     """
-    where = {"doc_id": doc_id} if doc_id else None
-    results = collection.query(
-        query_texts=[query],
-        n_results=n_results,
-        where=where
+    Store chunks in ChromaDB.
+    """
+
+    embeddings = embed_chunks(chunks)
+
+    ids = [f"chunk_{i}" for i in range(len(chunks))]
+
+    collection.add(
+        documents=chunks,
+        embeddings=embeddings,
+        ids=ids
     )
+
+    # # Debug print-outs below (Uncomment to debug; leaving this in case it might be useful, can be deleted later)
+    # print("DEBUG CHUNKS TYPE:", type(chunks))
+    # print("DEBUG SAMPLE:", chunks[:3])
+
+
+def query_chunks(query: str, n_results: int = 3) -> list[str]:
+    """
+    Retrieve relevant chunks from ChromaDB.
+    """
+
+    query_embedding = embed_text(query)
+
+    results = collection.query(
+        query_embeddings=[query_embedding],
+        n_results=n_results
+    )
+
     return results["documents"][0] if results["documents"] else []
