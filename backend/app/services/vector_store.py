@@ -39,9 +39,9 @@ def store_chunks(chunks: list[str]):
         ids=ids
     )
 
-    # Debug print-outs below
-    print("DEBUG CHUNKS TYPE:", type(chunks))
-    print("DEBUG SAMPLE:", chunks[:3])
+    # # Debug print-outs below (Uncomment to debug; leaving this in case it might be useful, can be deleted later)
+    # print("DEBUG CHUNKS TYPE:", type(chunks))
+    # print("DEBUG SAMPLE:", chunks[:3])
 
 
 def query_chunks(query: str, n_results: int = 3) -> list[str]:
