@@ -12,7 +12,24 @@ function App() {
     setActiveDoc(newDocument);
   };
 
-  function handleUpload (uploadedDoc) {
+  async function handleUpload (uploadedDoc) {
+    // Citation for the following code:
+    // Date: 05/19/2026
+    // Adapted from:
+    // Source URL: https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Sending_forms_through_JavaScript
+    
+    // Create a new FormData object and append the uploaded document
+    const formData = new FormData();
+    formData.append("file", uploadedDoc.file)
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000", {
+        method: "POST",
+        body: formData,
+      });
+    } catch (e) {
+        console.error(e);
+    }
     setDocuments([...documents, uploadedDoc]);
     // Set new document as active doc
     handleActiveDoc(uploadedDoc.fileURL);
