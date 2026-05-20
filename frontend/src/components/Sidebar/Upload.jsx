@@ -6,7 +6,8 @@ export default function Upload({handleUpload}) {
     const uploadFile = (e) => {
         handleUpload({
             fileName: e.target.files[0].name, // Set name of file
-            fileURL: URL.createObjectURL(e.target.files[0]) // Create a URL for the file path
+            fileURL: URL.createObjectURL(e.target.files[0]), // Create a URL for the file path
+            file: e.target.files[0]
         }
         );
   };
