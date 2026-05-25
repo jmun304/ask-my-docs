@@ -7,6 +7,7 @@ function App() {
   const [documents, setDocuments] = useState([])
   const [messages, setMessages] = useState([])
   const [activeDoc, setActiveDoc] = useState(null)
+  const [messageReply, setMessageReply] = useState(null)
 
   function handleActiveDoc (newDocument) {
     setActiveDoc(newDocument);
@@ -41,9 +42,26 @@ function App() {
     setTimeout(function() {
             setMessages([...messages, <div className="chat-bubbles user-question">{newMessage}</div>, <div className="chat-bubbles ai-answer"><div className="loading">...</div></div>]);
         }, 1000);
+        
+    try {
+      const response = await fetch("http://127.0.0.1:8000", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: newMessage }),
+      });
+
+      const reply = await response.json();
+      setMessageReply(reply)
+
+    } catch (e) {
+        console.error(e);
+    }
+
     // Wait then display AI message
     setTimeout(function() {
-            setMessages([...messages, <div className="chat-bubbles user-question">{newMessage}</div>, <div className="chat-bubbles ai-answer">AI Reply Here</div>]);
+            setMessages([...messages, <div className="chat-bubbles user-question">{messageReply}</div>, <div className="chat-bubbles ai-answer">AI Reply Here</div>]);
         }, 3000);
   };
 
