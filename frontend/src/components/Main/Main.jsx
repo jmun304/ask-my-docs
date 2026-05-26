@@ -1,5 +1,5 @@
 import DocumentView from "./DocumentView.jsx"
-import './Main.css'
+import './main.css'
 
 export default function Main({activeDoc}) {
   return (

@@ -1,0 +1,35 @@
+/* Citation for the following classes:
+Date: 04/15/2026
+Adapted from:
+Source URL: https://stackoverflow.com/questions/572768/styling-an-input-type-file-button */
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+    background-color: var(--blue);
+    padding: 25px 15px;
+    font-size: 24px;
+    text-transform: uppercase;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: var(--lato);
+    font-weight: 700;
+    color: var(--dark);
+    box-shadow: var(--box-shadow);
+    letter-spacing: 0.03em;
+    display: block;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.custom-file-upload:hover {
+    background-color: var(--grey);  
+}
+
+.custom-file-upload i {
+    display: block;
+    margin: auto;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
