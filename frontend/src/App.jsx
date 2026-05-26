@@ -18,40 +18,79 @@ function App() {
     handleActiveDoc(uploadedDoc.fileURL);
   };
 
-  function handleMessages (newMessage) {
-    setMessages([...messages, <div className="chat-bubbles user-question">{newMessage}</div>]);
-    // Wait then display typing dots
-    setTimeout(function() {
-            setMessages([...messages, <div className="chat-bubbles user-question">{newMessage}</div>, <div className="chat-bubbles ai-answer"><div className="loading">...</div></div>]);
-        }, 1000);
-    // Wait then display AI message
-    setTimeout(function() {
-            setMessages([...messages, <div className="chat-bubbles user-question">{newMessage}</div>, <div className="chat-bubbles ai-answer">AI Reply Here</div>]);
-        }, 3000);
-  };
+  async function handleMessages(newMessage) {
+    // 1. Show user question immediately
+    setMessages(prev => [...prev, 
+        <div className="chat-bubbles user-question">{newMessage}</div>
+    ]);
 
+    // 2. Show typing dots while waiting for API
+    setMessages(prev => [...prev,
+        <div className="chat-bubbles ai-answer">
+            <div className="loading">...</div>
+        </div>
+    ]);
+
+    try {
+        // 3. Call backend query endpoint
+        const response = await fetch("http://localhost:8000/query", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ question: newMessage })
+        });
+
+        const data = await response.json();
+
+        // 4. Replace typing dots with real answer
+        setMessages(prev => {
+            const withoutDots = prev.slice(0, -1);  // remove last (dots)
+            return [...withoutDots, 
+                <div className="chat-bubbles ai-answer">{data.answer}</div>
+            ];
+        });
+
+    } catch (error) {
+        // 5. Handle errors
+        setMessages(prev => {
+            const withoutDots = prev.slice(0, -1);
+            return [...withoutDots,
+                <div className="chat-bubbles ai-answer">
+                    Sorry, something went wrong. Please try again.
+                </div>
+            ];
+        });
+      }
+  };
+  
   return (
     <>
       <header>
         <h1>Ask My Documents</h1>
       </header>
       <main>
-          <div className="sidebar-container"><Sidebar 
-                documents={documents}
-                activeDoc={activeDoc}
-                handleActiveDoc={handleActiveDoc}
-                handleUpload={handleUpload}
-          /></div>
-          <div className="main-container"><Main 
-                activeDoc={activeDoc}
-          /></div>
-          <div className="chat-container"><Chat 
-                messages={messages}
-                handleMessages={handleMessages}
-          /></div>
+        <div className="sidebar-container">
+          <Sidebar
+            documents={documents}
+            activeDoc={activeDoc}
+            handleActiveDoc={handleActiveDoc}
+            handleUpload={handleUpload}
+          />
+        </div>
+        <div className="main-container">
+          <Main activeDoc={activeDoc} />
+        </div>
+        <div className="chat-container">
+          <Chat
+            messages={messages}
+            handleMessages={handleMessages}
+          />
+        </div>
       </main>
     </>
   )
 }
+
+
+
 
 export default App
