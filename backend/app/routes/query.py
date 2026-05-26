@@ -2,13 +2,13 @@
 This file defines the /query API endpoint.
 
 ========================================================
-CURRENT STATE (MVP - CORRECT IMPLEMENTATION)
+CURRENT STATE (MVP - CORRECT IMPLEMENTATION --> Implementing Groq)
 ========================================================
 - Receives a user question
 - Passes the question to rag_pipeline()
 - rag_pipeline() handles:
     → retrieval (vector search)
-    → returns relevant context chunks
+    → returns relevant context chunks + LLM generated answer
 - API returns:
     → question
     → retrieved context (no LLM yet)
@@ -70,7 +70,7 @@ def query_docs(request: QueryRequest):
     Returns:
         QueryResponse:
             - question: original user question
-            - answer: LLM-generated answer (None in MVP stage)
+            - answer: LLM-generated answer via Groq (llama3-8b-8192)
             - context_used: retrieved chunks used for answering
     """
 

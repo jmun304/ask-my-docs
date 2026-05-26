@@ -90,3 +90,4 @@ def get_preview_of_chunk(chunk: str, num_words: int = 10) -> str:
 
     words = chunk.split()
     return " ".join(words[:num_words])
+

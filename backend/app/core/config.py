@@ -5,7 +5,7 @@ CHROMA_DB_DIR = "./data/chroma"
 COLLECTION_NAME = "documents"
 
 # Retrieval settings
-TOP_K_RESULTS = 3
+TOP_K_RESULTS = 5
 
 # Chunking settings
 CHUNK_SIZE = 300

@@ -1,8 +1,10 @@
+
 from fastapi import APIRouter, UploadFile, File
 
 from app.services.pdf_utils import extract_pdf_text
 from app.services.preprocessing import clean_text, chunk_text
 from app.services.vector_store import reset_collection, store_chunks
+
 
 router = APIRouter()
 
@@ -11,7 +13,7 @@ router = APIRouter()
 def upload_pdf(file: UploadFile = File(...)):
     # 1. Extract text (ref: pdf_utils.py)
     text = extract_pdf_text(file)
-
+    
     # 2. Clean text (ref: preprocessing.py)
     cleaned = clean_text(text)
 
@@ -28,3 +30,4 @@ def upload_pdf(file: UploadFile = File(...)):
         "message": "PDF processed successfully",
         "num_chunks": len(chunks)
     }
+
