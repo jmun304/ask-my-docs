@@ -5,6 +5,9 @@ export default function Upload({handleUpload}) {
     // Date: 04/15/2026
     // Adapted from:
     // Source URL: https://www.xjavascript.com/blog/how-get-get-file-name-in-file-chooser-in-react/
+
+    const API = import.meta.env.VITE_API_URL;
+
     const uploadFile = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -17,7 +20,7 @@ export default function Upload({handleUpload}) {
         formData.append("file", file);
     
         try {
-            const response = await fetch("http://localhost:8000/upload", {
+            const response = await fetch(`${API}/upload`, {
                 method: "POST",
                 body: formData  // no Content-Type header needed — browser sets it automatically
             });

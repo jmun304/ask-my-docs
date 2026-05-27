@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Upload from "./components/Upload/Upload.jsx";
 
 function App() {
+  const API = import.meta.env.VITE_API_URL;
   const [documents, setDocuments] = useState([])
   const [messages, setMessages] = useState([])
   const [activeDoc, setActiveDoc] = useState(null)
@@ -33,7 +34,7 @@ function App() {
 
     try {
         // 3. Call backend query endpoint
-        const response = await fetch("http://localhost:8000/query", {
+        const response = await fetch(`${API}/query`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ question: newMessage })
