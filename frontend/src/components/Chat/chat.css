@@ -1,23 +1,9 @@
-.chat-container {
-    width: 325px;
-    font-family: var(--lato);
-    font-size: 16px;
-    color: var(--dark);
-}
-
-@media (max-width: 1250px) {
-    .chat-container {
-        width: 100%;
-        order: 2;
-    }
-}
-
 .chat-box {
     box-shadow: var(--box-shadow);
     border-radius: 20px;
 }
 
-.chat-container h2 {
+.left-container h2 {
     margin: 0;
 }
 

@@ -1,3 +1,5 @@
+import './upload.css'
+
 export default function Upload({handleUpload}) {
     // Citation for the following function:
     // Date: 04/15/2026

@@ -1,7 +1,7 @@
-import Sidebar from "./components/Sidebar/Sidebar.jsx"
 import Main from "./components/Main/Main.jsx"
 import Chat from "./components/Chat/Chat.jsx"
 import { useState } from 'react';
+import Upload from "./components/Upload/Upload.jsx";
 
 function App() {
   const [documents, setDocuments] = useState([])
@@ -68,22 +68,17 @@ function App() {
         <h1>Ask My Documents</h1>
       </header>
       <main>
-        <div className="sidebar-container">
-          <Sidebar
-            documents={documents}
-            activeDoc={activeDoc}
-            handleActiveDoc={handleActiveDoc}
+        <div className="left-container">
+          <Upload
             handleUpload={handleUpload}
           />
-        </div>
-        <div className="main-container">
-          <Main activeDoc={activeDoc} />
-        </div>
-        <div className="chat-container">
           <Chat
             messages={messages}
             handleMessages={handleMessages}
           />
+        </div>
+        <div className="right-container">
+          <Main activeDoc={activeDoc} />
         </div>
       </main>
     </>

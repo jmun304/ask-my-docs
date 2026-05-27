@@ -38,8 +38,34 @@ main {
   margin: 20px;
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 800px) {
   main {
     flex-direction: column;
   }
+}
+
+.left-container {
+    width: 500px;
+    font-family: var(--lato);
+    font-size: 16px;
+    color: var(--dark);
+}
+
+@media (max-width: 800px) {
+    .left-container {
+        width: 100%;
+        order: 1;
+    }
+}
+
+.right-container {
+    width: 900px;
+    border-radius: 0 0 20px 20px;
+}
+
+@media (max-width: 800px) {
+    .right-container {
+        width: 100%;
+        order: 2;
+    }
 }
