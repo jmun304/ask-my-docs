@@ -16,7 +16,6 @@
 
 3. Go into backend folder: `cd backend`
 4. Activate virtual envirionment: `python -m venv venv`
-5. Activate Virtual Environment: 
 
 _**Windows**_: `venv\Scripts\activate`
 
